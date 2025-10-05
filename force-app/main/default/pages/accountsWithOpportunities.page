@@ -1,0 +1,92 @@
+<apex:page controller="AccountsWithOpportunitiesController" standardStylesheets="false" sidebar="false" showHeader="false">
+    
+    <!-- Custom CSS for a clean, modern table look -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            background-color: #f3f4f6; /* Light gray background */
+        }
+        .container {
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        h1 {
+            font-size: 1.875rem; /* 30px */
+            font-weight: 700;
+            color: #1f2937;
+            border-bottom: 2px solid #e5e7eb;
+            padding-bottom: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        /* Style for the PageBlock itself (removing default VF borders) */
+        .vf-page-block {
+            border: none !important;
+            box-shadow: none !important;
+            background: none !important;
+        }
+        /* Styling the PageBlockTable */
+        .data-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            overflow: hidden;
+            border-radius: 8px;
+        }
+        .data-table th {
+            background-color: #4f46e5; /* Indigo header background */
+            color: #ffffff;
+            text-align: left;
+            padding: 12px 20px;
+            font-weight: 600;
+            font-size: 0.875rem;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+        .data-table td {
+            padding: 12px 20px;
+            border-bottom: 1px solid #e5e7eb;
+            color: #374151;
+        }
+        .data-table tr:nth-child(even) {
+            background-color: #f9fafb; /* Zebra striping */
+        }
+        .data-table tr:hover {
+            background-color: #eff6ff; /* Light blue hover effect */
+            transition: background-color 0.15s ease-in-out;
+        }
+        .opportunity-count {
+            font-weight: 700;
+            color: #10b981; /* Green color for the count */
+            text-align: right;
+        }
+    </style>
+
+    <div class="container">
+        <h1>Accounts with Opportunity Count</h1>
+
+        <apex:pageBlock title="Account Records" html-class="vf-page-block">
+
+            <apex:pageBlockTable value="{!accounts}" var="acc" html-class="data-table">
+
+                <apex:column headerValue="Account Name">
+                    <apex:outputField value="{!acc.Name}" />
+                </apex:column>
+
+                <apex:column headerValue="Industry">
+                    <apex:outputText value="{!acc.Industry}" />
+                </apex:column>
+
+                <apex:column headerValue="Opportunities" style="text-align: right;">
+                    <apex:outputText value="{!acc.NumberOfOpportunities__c}" html-class="opportunity-count" />
+                </apex:column>
+
+            </apex:pageBlockTable>
+        </apex:pageBlock>
+    </div>
+
+</apex:page>
