@@ -69,6 +69,7 @@ SELECT StageName label, COUNT(Id) value
 FROM Opportunity WITH SECURITY_ENFORCED
 GROUP BY StageName
 LIMIT 10
+```
 
 ## 🚀 Deployment and User Experience
 
